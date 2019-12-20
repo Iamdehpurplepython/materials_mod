@@ -1,4 +1,4 @@
-package minecraft.tadas77.materialsmod;
+package minecraft.tadas77.tadas77_materials_mod;
 
 import net.minecraft.util.ResourceLocation;
 
