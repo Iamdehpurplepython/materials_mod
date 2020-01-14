@@ -39,21 +39,4 @@ public class MaterialsMod {
 
 	}
 
-	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class RegistryEvents {
-		@SubscribeEvent
-		public static void registerItems(final RegistryEvent.Register<Item> event) {
-			ItemList.register(event);
-		}
-
-		@SubscribeEvent
-		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
-			BlockList.register(event);
-		}
-		
-		public static ResourceLocation location(String loc) {
-			return new ResourceLocation(MaterialsMod.MODID, loc);
-		}
-	}
-
 }
