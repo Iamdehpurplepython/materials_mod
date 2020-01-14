@@ -1,6 +1,6 @@
-package minecraft.tadas77.materialsmod.blocks;
+package minecraft.tadas77.tadas77_materials_mod.blocks;
 
-import minecraft.tadas77.materialsmod.MinecraftList;
+import minecraft.tadas77.tadas77_materials_mod.MinecraftList;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 

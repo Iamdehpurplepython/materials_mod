@@ -1,10 +1,10 @@
-package minecraft.tadas77.materialsmod;
+package minecraft.tadas77.tadas77_materials_mod;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import minecraft.tadas77.materialsmod.blocks.BlockList;
-import minecraft.tadas77.materialsmod.items.ItemList;
+import minecraft.tadas77.tadas77_materials_mod.blocks.BlockList;
+import minecraft.tadas77.tadas77_materials_mod.items.ItemList;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
