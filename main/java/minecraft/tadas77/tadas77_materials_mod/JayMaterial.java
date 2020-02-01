@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 public class JayMaterial {
 	public static ArrayList<JayMaterial> materials;
@@ -23,6 +24,8 @@ public class JayMaterial {
 
 		this.block = new Block(blockproperties).setRegistryName(location(locname));
 		this.itemblock = new BlockItem(this.block, blockitemproperties).setRegistryName(location(locname));
+		
+		FMLJavaModLoadingContext.get().getModEventBus().register(this);
 
 		materials.add(this);
 	}
