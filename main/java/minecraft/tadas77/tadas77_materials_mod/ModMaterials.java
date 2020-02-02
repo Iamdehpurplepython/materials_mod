@@ -17,8 +17,11 @@ public class ModMaterials {
 	static JayMaterial copper;
 
 	public static void init() {
-		ModMaterials.copper = new JayMaterial("copper", new Item.Properties().group(ItemGroup.MATERIALS),
-				Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 30.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE),
+		MaterialsMod.LOGGER.debug("ModMaterials Init - 3.14159265");
+
+		ModMaterials.copper = new JayMaterial(
+				"copper", new Item.Properties().group(ItemGroup.MATERIALS), Block.Properties.create(Material.IRON)
+						.hardnessAndResistance(3.0F, 30.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE),
 				new Item.Properties().group(ItemGroup.BUILDING_BLOCKS));
 	}
 }

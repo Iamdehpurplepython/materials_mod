@@ -2,6 +2,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "tadas77_materials_mod:block/copper"
+        "all": "tadas77_materials_mod:block/copper_block"
     }
 }
