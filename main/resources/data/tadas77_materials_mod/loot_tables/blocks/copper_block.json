@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:copper_block"
+          "name": "tadas77_materials_mod:copper_block"
         }
       ],
       "conditions": [
