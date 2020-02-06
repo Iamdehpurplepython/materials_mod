@@ -19,9 +19,18 @@ public class ModMaterials {
 	public static void init() {
 		MaterialsMod.LOGGER.debug("ModMaterials Init - 3.14159265");
 
-		ModMaterials.copper = new JayMaterial(
-				"copper", new Item.Properties().group(ItemGroup.MATERIALS), Block.Properties.create(Material.IRON)
-						.hardnessAndResistance(3.0F, 30.0F).harvestLevel(1).harvestTool(ToolType.PICKAXE),
+		ModMaterials.copper = ModMaterials.createRegularMaterial("copper", 3.0F,
+				30.0F, 1, ToolType.PICKAXE);
+	}
+
+	public static JayMaterial createRegularMaterial(String locname,
+			Float hardness, Float resistance, int harvestlevel,
+			ToolType harvesttool) {
+		return new JayMaterial(locname,
+				new Item.Properties().group(ItemGroup.MATERIALS),
+				Block.Properties.create(Material.IRON)
+						.hardnessAndResistance(hardness, resistance)
+						.harvestLevel(harvestlevel).harvestTool(harvesttool),
 				new Item.Properties().group(ItemGroup.BUILDING_BLOCKS));
 	}
 }

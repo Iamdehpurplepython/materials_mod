@@ -26,8 +26,7 @@ public class JayMaterial {
 
 	public String locname;
 
-	public JayMaterial(String locname, Item.Properties itemproperties, Block.Properties blockproperties,
-			Item.Properties blockitemproperties) {
+	public JayMaterial(String locname, Item.Properties itemproperties, Block.Properties blockproperties, Item.Properties blockitemproperties) {
 		MaterialsMod.LOGGER.debug("JayMaterials Init - 3.14159265");
 
 		this.itemproperties = itemproperties;
@@ -52,9 +51,8 @@ public class JayMaterial {
 		MaterialsMod.LOGGER.debug("JayMaterials Register Item - 3.14159265");
 
 		this.item = new Item(this.itemproperties).setRegistryName(location(this.locname + "_item"));
-		
-		this.blockitem = new BlockItem(this.block, this.blockitemproperties)
-				.setRegistryName(location(this.locname + "_block"));
+
+		this.blockitem = new BlockItem(this.block, this.blockitemproperties).setRegistryName(location(this.locname + "_block"));
 
 		((RegistryEvent.Register<Item>) event).getRegistry().registerAll(this.item, this.blockitem);
 	}
