@@ -22,7 +22,7 @@ public class MaterialsMod {
 
 		ModMaterials.init();
 
-		this.instance = this;
+		MaterialsMod.instance = this;
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
