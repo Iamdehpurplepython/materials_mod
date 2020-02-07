@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,13 +27,10 @@ public class JayMaterial {
 
 	public String locname;
 
-	public JayMaterial(String locname, Item.Properties itemproperties, Block.Properties blockproperties, Item.Properties blockitemproperties) {
+	public JayMaterial(String locname, Block.Properties blockproperties) {
 		MaterialsMod.LOGGER.debug("JayMaterials Init - 3.14159265");
 
-		this.itemproperties = itemproperties;
-
 		this.blockproperties = blockproperties;
-		this.blockitemproperties = blockitemproperties;
 
 		this.locname = locname;
 
@@ -50,11 +48,15 @@ public class JayMaterial {
 	public void registerItem(final RegistryEvent<Item> event) {
 		MaterialsMod.LOGGER.debug("JayMaterials Register Item - 3.14159265");
 
-		this.item = new Item(this.itemproperties).setRegistryName(location(this.locname + "_item"));
+		this.item = new Item(new Item.Properties().group(ItemGroup.MATERIALS))
+				.setRegistryName(location(this.locname + "_item"));
 
-		this.blockitem = new BlockItem(this.block, this.blockitemproperties).setRegistryName(location(this.locname + "_block"));
+		this.blockitem = new BlockItem(this.block,
+				new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))
+						.setRegistryName(location(this.locname + "_block"));
 
-		((RegistryEvent.Register<Item>) event).getRegistry().registerAll(this.item, this.blockitem);
+		((RegistryEvent.Register<Item>) event).getRegistry()
+				.registerAll(this.item, this.blockitem);
 	}
 
 	@SubscribeEvent
@@ -68,9 +70,11 @@ public class JayMaterial {
 	public void registerBlock(final RegistryEvent<Block> event) {
 		MaterialsMod.LOGGER.debug("JayMaterials Register Block - 3.14159265");
 
-		this.block = new Block(this.blockproperties).setRegistryName(location(this.locname + "_block"));
+		this.block = new Block(this.blockproperties)
+				.setRegistryName(location(this.locname + "_block"));
 
-		((RegistryEvent.Register<Block>) event).getRegistry().registerAll(this.block);
+		((RegistryEvent.Register<Block>) event).getRegistry()
+				.registerAll(this.block);
 	}
 
 	public static ResourceLocation location(String name) {

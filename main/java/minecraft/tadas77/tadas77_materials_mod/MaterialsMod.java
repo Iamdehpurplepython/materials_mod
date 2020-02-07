@@ -15,8 +15,10 @@ public class MaterialsMod {
 	public static final String MODID = "tadas77_materials_mod";
 
 	public MaterialsMod() {
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+		FMLJavaModLoadingContext.get().getModEventBus()
+				.addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus()
+				.addListener(this::doClientStuff);
 
 		ModMaterials.init();
 
