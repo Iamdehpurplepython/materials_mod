@@ -3,9 +3,16 @@ package minecraft.tadas77.tadas77_materials_mod;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.HoeItem;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,24 +22,36 @@ import net.minecraftforge.fml.common.Mod;
 public class JayMaterial {
 	public static ArrayList<JayMaterial> materials = new ArrayList<JayMaterial>();
 
+	// Item
 	public Item.Properties itemproperties;
-
 	public Item item;
 
+	// Block
 	public Block.Properties blockproperties;
 	public Item.Properties blockitemproperties;
 
 	public Block block;
 	public Item blockitem;
 
+	// Tool
+	public IItemTier itemtier;
+	public Item axe;
+	public Item pickaxe;
+	public Item sword;
+	public Item shovel;
+	public Item hoe;
+
 	public String locname;
 
-	public JayMaterial(String locname, Block.Properties blockproperties) {
+	public JayMaterial(String locname, Block.Properties blockproperties,
+			IItemTier itemtier) {
 		MaterialsMod.LOGGER.debug("JayMaterials Init - 3.14159265");
 
 		this.blockproperties = blockproperties;
 
 		this.locname = locname;
+
+		this.itemtier = itemtier;
 
 		materials.add(this);
 	}
@@ -55,8 +74,20 @@ public class JayMaterial {
 				new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))
 						.setRegistryName(location(this.locname + "_block"));
 
-		((RegistryEvent.Register<Item>) event).getRegistry()
-				.registerAll(this.item, this.blockitem);
+		this.sword = new SwordItem(itemtier, 3, -2.4F,
+				(new Item.Properties()).group(ItemGroup.COMBAT)).setRegistryName(location(this.locname + "_sword"));
+		this.shovel = new ShovelItem(itemtier, 1.5F, -3.0F,
+				(new Item.Properties()).group(ItemGroup.TOOLS)).setRegistryName(location(this.locname + "_shovel"));
+		this.pickaxe = new PickaxeItem(itemtier, 1, -2.8F,
+				(new Item.Properties()).group(ItemGroup.TOOLS)).setRegistryName(location(this.locname + "_pickaxe"));
+		this.axe = new AxeItem(itemtier, 6.0F, -3.2F,
+				(new Item.Properties()).group(ItemGroup.TOOLS)).setRegistryName(location(this.locname + "_axe"));
+		this.hoe = new HoeItem(itemtier, -3.0F,
+				(new Item.Properties()).group(ItemGroup.TOOLS)).setRegistryName(location(this.locname + "_hoe"));
+
+		((RegistryEvent.Register<Item>) event).getRegistry().registerAll(
+				this.item, this.blockitem, this.sword, this.shovel,
+				this.pickaxe, this.axe, this.hoe);
 	}
 
 	@SubscribeEvent
