@@ -1,4 +1,11 @@
 {
+// Copper
 	"item.tadas77_materials_mod.copper_item": "Copper Ingot",
-	"block.tadas77_materials_mod.copper_block": "Copper Block"
+	"block.tadas77_materials_mod.copper_block": "Copper Block",
+	
+	"item.tadas77_materials_mod.copper_axe": "Copper Axe",
+	"item.tadas77_materials_mod.copper_pickaxe": "Copper Pickaxe",
+	"item.tadas77_materials_mod.copper_shovel": "Copper Shovel",
+	"item.tadas77_materials_mod.copper_hoe": "Copper Hoe",
+	"item.tadas77_materials_mod.copper_sword": "Copper Sword"
 }
