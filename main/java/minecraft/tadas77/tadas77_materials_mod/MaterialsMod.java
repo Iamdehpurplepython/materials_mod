@@ -26,7 +26,7 @@ public class MaterialsMod {
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {
-
+		OreGeneration.setupOreGen();
 	}
 
 	private void doClientStuff(final FMLClientSetupEvent event) {

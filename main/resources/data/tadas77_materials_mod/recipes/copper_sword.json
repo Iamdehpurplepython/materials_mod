@@ -10,10 +10,10 @@
       "item": "minecraft:stick"
     },
     "#": {
-      "item": "tadas77_materials_mod:copper_ingot"
+      "item": "tadas77_materials_mod:copper_item"
     }
   },
   "result": {
-    "item": "tadas77_materials_mod:copper_axe"
+    "item": "tadas77_materials_mod:copper_sword"
   }
 }
