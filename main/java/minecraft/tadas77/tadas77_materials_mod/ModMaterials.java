@@ -2,7 +2,6 @@ package minecraft.tadas77.tadas77_materials_mod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.ToolType;
 
