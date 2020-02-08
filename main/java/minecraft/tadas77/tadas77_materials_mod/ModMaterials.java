@@ -2,8 +2,8 @@ package minecraft.tadas77.tadas77_materials_mod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraftforge.common.ToolType;
 
 /*
@@ -20,11 +20,12 @@ public class ModMaterials {
 		MaterialsMod.LOGGER.debug("ModMaterials Init - 3.14159265");
 
 		ModMaterials.copper = new JayMaterial("copper",
-				Block.Properties.create(Material.IRON)
-						.hardnessAndResistance(5.0F, 6.0F).harvestLevel(1)
+				Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).harvestLevel(1)
+						.harvestTool(ToolType.PICKAXE),
+				Block.Properties.create(Material.IRON).hardnessAndResistance(3.0F, 15.0F).harvestLevel(1)
 						.harvestTool(ToolType.PICKAXE),
 				new JayItemTier(2, 200, 5.5F, 1.5F, 12, () -> {
 					return Ingredient.fromItems(ModMaterials.copper.item);
-				}));
+				}), new CountRangeConfig(15, 40, 0, 128), 7);
 	}
 }
