@@ -3,9 +3,12 @@ package minecraft.tadas77.tadas77_materials_mod;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -48,6 +51,14 @@ public class JayMaterial {
 	public Item shovel;
 	public Item hoe;
 
+	// Armor
+	public IArmorMaterial armormaterial;
+
+	public Item helm;
+	public Item chest;
+	public Item legs;
+	public Item feet;
+
 	// OreGen
 	public CountRangeConfig config;
 	public int veinsize;
@@ -55,7 +66,7 @@ public class JayMaterial {
 	public String locname;
 
 	public JayMaterial(String locname, Block.Properties blockproperties, Block.Properties oreproperties,
-			IItemTier itemtier, CountRangeConfig config, int veinsize) {
+			IItemTier itemtier, CountRangeConfig config, int veinsize, IArmorMaterial armormat) {
 		MaterialsMod.LOGGER.debug("JayMaterials Init - 3.14159265");
 
 		this.blockproperties = blockproperties;
@@ -67,6 +78,7 @@ public class JayMaterial {
 		this.locname = locname;
 
 		this.itemtier = itemtier;
+		this.armormaterial = armormat;
 
 		materials.add(this);
 	}
@@ -87,20 +99,31 @@ public class JayMaterial {
 
 		this.blockitem = new BlockItem(this.block, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))
 				.setRegistryName(location(this.locname + "_block"));
+		this.oreblockitem = new BlockItem(this.oreblock, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS))
+				.setRegistryName(location(this.locname + "_oreblock"));
 
-		this.sword = new SwordItem(itemtier, 3, -2.4F, (new Item.Properties()).group(ItemGroup.COMBAT))
+		this.sword = new SwordItem(this.itemtier, 3, -2.4F, (new Item.Properties()).group(ItemGroup.COMBAT))
 				.setRegistryName(location(this.locname + "_sword"));
-		this.shovel = new ShovelItem(itemtier, 1.5F, -3.0F, (new Item.Properties()).group(ItemGroup.TOOLS))
+		this.shovel = new ShovelItem(this.itemtier, 1.5F, -3.0F, (new Item.Properties()).group(ItemGroup.TOOLS))
 				.setRegistryName(location(this.locname + "_shovel"));
-		this.pickaxe = new PickaxeItem(itemtier, 1, -2.8F, (new Item.Properties()).group(ItemGroup.TOOLS))
+		this.pickaxe = new PickaxeItem(this.itemtier, 1, -2.8F, (new Item.Properties()).group(ItemGroup.TOOLS))
 				.setRegistryName(location(this.locname + "_pickaxe"));
-		this.axe = new AxeItem(itemtier, 6.0F, -3.2F, (new Item.Properties()).group(ItemGroup.TOOLS))
+		this.axe = new AxeItem(this.itemtier, 6.0F, -3.2F, (new Item.Properties()).group(ItemGroup.TOOLS))
 				.setRegistryName(location(this.locname + "_axe"));
-		this.hoe = new HoeItem(itemtier, -3.0F, (new Item.Properties()).group(ItemGroup.TOOLS))
+		this.hoe = new HoeItem(this.itemtier, -3.0F, (new Item.Properties()).group(ItemGroup.TOOLS))
 				.setRegistryName(location(this.locname + "_hoe"));
 
-		((RegistryEvent.Register<Item>) event).getRegistry().registerAll(this.item, this.blockitem, this.sword,
-				this.shovel, this.pickaxe, this.axe, this.hoe);
+		helm = new ArmorItem(this.armormaterial, EquipmentSlotType.HEAD, (new Item.Properties()).group(ItemGroup.COMBAT))
+				.setRegistryName(location(this.locname + "_helm"));
+		chest = new ArmorItem(this.armormaterial, EquipmentSlotType.CHEST, (new Item.Properties()).group(ItemGroup.COMBAT))
+				.setRegistryName(location(this.locname + "_chest"));
+		legs = new ArmorItem(this.armormaterial, EquipmentSlotType.LEGS, (new Item.Properties()).group(ItemGroup.COMBAT))
+				.setRegistryName(location(this.locname + "_legs"));
+		feet = new ArmorItem(this.armormaterial, EquipmentSlotType.FEET, (new Item.Properties()).group(ItemGroup.COMBAT))
+				.setRegistryName(location(this.locname + "_feet"));
+
+		((RegistryEvent.Register<Item>) event).getRegistry().registerAll(this.item, this.blockitem, this.oreblockitem,
+				this.sword, this.shovel, this.pickaxe, this.axe, this.hoe);
 	}
 
 	@SubscribeEvent
@@ -118,7 +141,7 @@ public class JayMaterial {
 
 		this.oreblock = new Block(this.oreblockproperties).setRegistryName(location(this.locname + "_oreblock"));
 
-		((RegistryEvent.Register<Block>) event).getRegistry().registerAll(this.block);
+		((RegistryEvent.Register<Block>) event).getRegistry().registerAll(this.block, this.oreblock);
 	}
 
 	public static ResourceLocation location(String name) {
