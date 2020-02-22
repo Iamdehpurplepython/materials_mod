@@ -25,6 +25,6 @@ public class ModMaterials {
 						.harvestTool(ToolType.PICKAXE),
 				new JayItemTier(2, 200, 5.5F, 1.5F, 12, () -> {
 					return Ingredient.fromItems(ModMaterials.copper.item);
-				}), new CountRangeConfig(15, 40, 0, 128), 7);
+				}), new CountRangeConfig(15, 40, 0, 128), 7, new JayArmorMaterial("copper", 143, damageReductionAmounts, 8, ModMaterials.copper.item, "item.armor.equip_iron", 0));
 	}
 }
