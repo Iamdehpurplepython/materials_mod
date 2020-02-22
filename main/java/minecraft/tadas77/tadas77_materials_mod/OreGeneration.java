@@ -5,7 +5,6 @@ import net.minecraft.world.gen.GenerationStage.Decoration;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
-import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -15,6 +14,7 @@ public class OreGeneration {
 //	private static final int copper_veinsize = 7;
 
 	public static void setupOreGen() {
+		MaterialsMod.LOGGER.debug("Setting Up Ore Gen - Iamdehpurple");
 		for (Biome biome : ForgeRegistries.BIOMES.getValues()) {
 
 			if (biome.getCategory() == Biome.Category.THEEND || biome.getCategory() == Biome.Category.NETHER) {

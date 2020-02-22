@@ -17,7 +17,6 @@ public class ModMaterials {
 	static JayMaterial copper;
 
 	public static void init() {
-		MaterialsMod.LOGGER.debug("ModMaterials Init - 3.14159265");
 
 		ModMaterials.copper = new JayMaterial("copper",
 				Block.Properties.create(Material.IRON).hardnessAndResistance(5.0F, 6.0F).harvestLevel(1)

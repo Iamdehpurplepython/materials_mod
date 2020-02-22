@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "tadas77_materials_mod:copper/oreblock"
+  },
+  "result": "tadas77_materials_mod:copper/item",
+  "experience": 0.6,
+  "cookingtime": 100
+}
