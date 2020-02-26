@@ -1,62 +1,64 @@
 package minecraft.tadas77.tadas77_materials_mod;
 
+import java.util.function.Supplier;
+
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.LazyLoadBase;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class JayArmorMaterial implements IArmorMaterial {
-	private static final int[] max_damage_array = new int[] { 13, 15, 16, 11 };
-	private String name, equipSound;
-	private int durability, enchantability;
-	private Item repairItem;
-	private int[] damageReductionAmounts;
-	private float toughness;
 
-	public JayArmorMaterial(String name, int durability, int[] damageReductionAmounts, int enchantability,
-			Item repairItem, String equipSound, float toughness) {
-		this.name = name;
-		this.equipSound = equipSound;
-		this.durability = durability;
-		this.enchantability = enchantability;
-		this.repairItem = repairItem;
-		this.damageReductionAmounts = damageReductionAmounts;
+	private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
+	private final String name;
+	private final int maxDamageFactor;
+	private final int[] damageReductionAmountArray;
+	private final int enchantability;
+	private final SoundEvent soundEvent;
+	private final float toughness;
+	private final LazyLoadBase<Ingredient> repairMaterial;
+
+	public JayArmorMaterial(String nameIn, int maxDamageFactorIn,
+			int[] damageReductionAmountsIn, int enchantabilityIn,
+			SoundEvent equipSoundIn, float toughness,
+			Supplier<Ingredient> repairMaterialSupplier) {
+		this.name = nameIn;
+		this.maxDamageFactor = maxDamageFactorIn;
+		this.damageReductionAmountArray = damageReductionAmountsIn;
+		this.enchantability = enchantabilityIn;
+		this.soundEvent = equipSoundIn;
 		this.toughness = toughness;
+		this.repairMaterial = new LazyLoadBase<>(repairMaterialSupplier);
 	}
 
-	@Override
-	public int getDamageReductionAmount(EquipmentSlotType slot) {
-		return this.damageReductionAmounts[slot.getIndex()];
+	public int getDurability(EquipmentSlotType slotIn) {
+		return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
 	}
 
-	@Override
-	public int getDurability(EquipmentSlotType slot) {
-		return max_damage_array[slot.getIndex()] * this.durability;
+	public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+		return this.damageReductionAmountArray[slotIn.getIndex()];
 	}
 
-	@Override
 	public int getEnchantability() {
 		return this.enchantability;
 	}
 
-	@Override
-	public String getName() {
-		return MaterialsMod.MODID + ":" + this.name;
-	}
-
-	@Override
-	public Ingredient getRepairMaterial() {
-		return Ingredient.fromItems(this.repairItem);
-	}
-
-	@Override
 	public SoundEvent getSoundEvent() {
-		return new SoundEvent(new ResourceLocation(equipSound));
+		return this.soundEvent;
 	}
 
-	@Override
+	public Ingredient getRepairMaterial() {
+		return this.repairMaterial.getValue();
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public String getName() {
+		return this.name;
+	}
+
 	public float getToughness() {
 		return this.toughness;
 	}

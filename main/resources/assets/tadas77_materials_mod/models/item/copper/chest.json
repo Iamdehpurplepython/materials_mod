@@ -1,0 +1,7 @@
+
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "tadas77_materials_mod:item/copper/chest"
+    }
+}

@@ -8,5 +8,10 @@
 	"item.tadas77_materials_mod.copper.pickaxe": "Copper Pickaxe",
 	"item.tadas77_materials_mod.copper.shovel": "Copper Shovel",
 	"item.tadas77_materials_mod.copper.hoe": "Copper Hoe",
-	"item.tadas77_materials_mod.copper.sword": "Copper Sword"
+	"item.tadas77_materials_mod.copper.sword": "Copper Sword",
+	
+	"item.tadas77_materials_mod.copper.helm": "Copper Helmet",
+	"item.tadas77_materials_mod.copper.chest": "Copper Chestplate",
+	"item.tadas77_materials_mod.copper.legs": "Copper Leggings",
+	"item.tadas77_materials_mod.copper.feet": "Copper Boots"
 }
